@@ -72,11 +72,6 @@ def get_train_parser():
                                                       "first auxilary loss"
     )
 
-    parser.add_argument(
-        "--multitask2", type=float, default=1.0, help="weight for "
-                                                      "second auxilary loss"
-    )
-
     return parser
 
 
