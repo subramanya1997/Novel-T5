@@ -39,7 +39,7 @@ def calc_similarity_trans(options):
         inp, out, trgt = line[:-1].split("\t\t")
         tensor1 = torch.tensor(mydict[out]).unsqueeze(0)
         tensor2 = torch.tensor(mydict[trgt]).unsqueeze(0)
-        cos_sim.append(cosine_similarity(tensor1, tensor2))
+        cos_sim.append(cosine_similarity(tensor1, tensor2).numpy())
 
     print("Cosine Similairity: {}".format(np.mean(cos_sim)))
 
@@ -160,7 +160,7 @@ test_loader = DataLoader(test_dataset, batch_size=options.batch_size,
 model = T5Novel(model_version='t5-base',
                             num_classes=32,
                             device=DEVICE)
-state_dict = torch.load(options.modelckpt, map_location='cpu')
+state_dict = torch.load(options.modelckpt+'/model_checkpoint_Best', map_location='cpu')
 model.load_state_dict(state_dict)
 model.to(DEVICE)
 #we set dropout to zero for testing!

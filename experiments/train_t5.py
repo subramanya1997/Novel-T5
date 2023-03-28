@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader
 from transformers import T5Tokenizer, T5ForConditionalGeneration
 
 from core.utils.parser import get_train_parser
-from core.data.empdataset import EmpatheticDatasets
+from core.data.empdataset import EmpatheticDataset
 from core.data.collators import T5CollatorChat
 from core.trainers import T5TransformerTrainer
 from torchsummary import summary
@@ -54,7 +54,7 @@ else:
     model = T5ForConditionalGeneration.from_pretrained('t5-base')
 model.config.output_hidden_states = True
 model.config.dropout_rate=0.2
-print(summary(model))
+#print(summary(model))
 
 # params and optimizer
 numparams = sum([p.numel() for p in model.parameters()])

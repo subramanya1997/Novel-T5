@@ -157,7 +157,7 @@ test_loader = DataLoader(test_dataset, batch_size=options.batch_size,
 
 # load model from checkpoint
 model = T5ForConditionalGeneration.from_pretrained('t5-small')
-state_dict = torch.load(options.modelckpt, map_location='cpu')
+state_dict = torch.load(options.modelckpt+"/optimizer_checkpoint", map_location='cpu')
 model.load_state_dict(state_dict)
 model.to(DEVICE)
 #we set dropout to zero for testing!

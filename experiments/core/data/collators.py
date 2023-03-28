@@ -2,7 +2,7 @@ import torch
 from torch.nn.utils.rnn import pad_sequence
 
 from core.utils.masks import pad_mask
-from core.utils.tensors import mktensor
+#from core.utils.tensors import mktensor
 
 class T5CollatorChat(object):
     def __init__(self, pad_indx=0, device='cpu'):
@@ -76,7 +76,7 @@ class NovelT5CollatorChat(object):
                          padding_value=self.pad_indx)
                 .to(self.device))
         replaced_targ = self.replace_pad_labels(padded_targets, -100)
-        emo_labels = mktensor(labels, dtype=torch.long)
+        emo_labels = torch.tensor(labels, dtype=torch.long)
         return padded_inputs, inputs_pad_mask, padded_targets,replaced_targ, \
                targets_pad_mask,emo_labels
 
