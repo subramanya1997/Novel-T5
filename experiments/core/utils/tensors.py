@@ -1,16 +1,16 @@
-from core.utils import mytypes
-from typing import  Optional
+#from core.utils import mytypes
+#from typing import  Optional
 import torch
 
 def to_device(tt: torch.Tensor,
-              device: Optional[mytypes.Device] = 'cpu',
+              device = 'cpu',
               non_blocking: bool = False) -> torch.Tensor:
     return tt.to(device, non_blocking=non_blocking)
 
 
-def mktensor(data: mytypes.NdTensor,
+def mktensor(data,
              dtype: torch.dtype = torch.float,
-             device: mytypes.Device = 'cpu',
+             device = 'cpu',
              requires_grad: bool = False,
              copy: bool = True) -> torch.Tensor:
     """Convert a list or numpy array to torch tensor. If a torch tensor

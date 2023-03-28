@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from core.utils.tensors import mktensor
+#from core.utils.tensors import mktensor
 from torch.utils.data import Dataset
 import torch
 
@@ -112,13 +112,13 @@ class EmpatheticDataset(Dataset):
         if self.transforms == []:
             hist = self.tokenizer_hist(hist)
             ans = self.tokenizer_ans(ans)
-            hist = mktensor(hist['input_ids'],dtype=torch.long)
-            ans = mktensor(ans['input_ids'],dtype=torch.long)
+            hist = torch.tensor(hist['input_ids'],dtype=torch.long)
+            ans = torch.tensor(ans['input_ids'],dtype=torch.long)
         else:
             for t in self.transforms:
                 hist = t(hist)
                 ans = t(ans)
-        label = mktensor(self.label2idx[label])
+        label = torch.tensor(self.label2idx[label])
         return hist, ans, label
 
     def getid(self, index):
